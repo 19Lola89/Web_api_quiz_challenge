@@ -1,14 +1,14 @@
 // DOM elements
-var questionsEl = document.querySelector("#questions");
+var startBtn = document.querySelector("#start");
 var timerEl = document.querySelector("#time");
+var questionsEl = document.querySelector("#questions");
 var choicesEl = document.querySelector("#choices");
 var submitBtn = document.querySelector("#submit");
-var startBtn = document.querySelector("#start");
 var initialsEl = document.querySelector("#initials");
 var feedbackEl = document.querySelector("#feedback");
 
-// quiz state variables
-var time = questions.length * 10;
+// setting variables
+var time = questionsArr.length * 10;
 var timer;
 var currentQuestionIndex = 0;
 
@@ -17,21 +17,21 @@ function startQuiz() {
   var startScreenEl = document.getElementById("start-screen");
   startScreenEl.setAttribute("class", "hide");
 
-  // un-hide questions section
+  // data- un-hide section
   questionsEl.removeAttribute("class");
 
   // start timer
-  timer = setInterval(clockTick, 1000);
+  timer = setInterval(clock, 1000);
 
   // show starting time
   timerEl.textContent = time;
 
-  getQuestion();
+  getNextQuestion();
 }
 
-function getQuestion() {
+function getNextQuestion() {
   // get current question object from array
-  var currentQuestion = questions[currentQuestionIndex];
+  var currentQuestion = questionsArr[currentQuestionIndex];
 
   // update title with current question
   var titleEl = document.getElementById("question-title");
@@ -41,26 +41,26 @@ function getQuestion() {
   choicesEl.innerHTML = "";
 
   // questions loop
-  currentQuestion.choices.forEach(function (choice, i) {
+  currentQuestion.choices.forEach(function (option, i) {
     // create new button for each choice
     var choiceButton = document.createElement("button");
-    choiceButton.setAttribute("class", "choice");
-    choiceButton.setAttribute("value", choice);
+    choiceButton.setAttribute("class", "option");
+    choiceButton.setAttribute("value", option);
 
-    choiceButton.textContent = i + 1 + ". " + choice;
+    choiceButton.textContent = i + 1 + ". " + option;
 
-    // attach click event listener to each choice
-    choiceButton.onclick = questionClick;
+    // attach click event listener to every choice button
+    choiceButton.onclick = questionPress;
 
     // display on the page
     choicesEl.appendChild(choiceButton);
   });
 }
 
-function questionClick() {
-  // check if user guessed wrong
-  if (this.value !== questions[currentQuestionIndex].answer) {
-    // penalize time
+function questionPress() {
+  // right/wrong guess
+  if (this.value !== questionsArr[currentQuestionIndex].answer) {
+    // deductucting time
     time -= 10;
 
     if (time < 0) {
@@ -87,10 +87,10 @@ function questionClick() {
   currentQuestionIndex++;
 
   // time checker
-  if (currentQuestionIndex === questions.length) {
+  if (currentQuestionIndex === questionsArr.length) {
     quizEnd();
   } else {
-    getQuestion();
+    getNextQuestion();
   }
 }
 
@@ -110,7 +110,7 @@ function quizEnd() {
   questionsEl.setAttribute("class", "hide");
 }
 
-function clockTick() {
+function clock() {
   // update time
   time--;
   timerEl.textContent = time;

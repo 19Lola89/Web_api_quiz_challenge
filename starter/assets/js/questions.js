@@ -1,5 +1,5 @@
-// list of questions
-var questions = [
+// questions
+var questionsArr = [
   {
     title: "The condition in an if/else statement is enclosed with ___. ",
     choices: ["parentheses", " curly brackets", "quotes", "square brackets"],
@@ -26,17 +26,7 @@ var questions = [
     choices: ["strings", "booleans", "alerts", "numbers"],
     answer: "alerts",
   },
-  {
-    title:
-      "Which one of these is not among the three different types of errors in JavaScript?",
-    choices: [
-      "Animation time errors",
-      "Load time errors",
-      "Run time errors",
-      "Logical Errors",
-    ],
-    answer: "Animation time errors",
-  },
+
   {
     title: "What is the data type of variables in JavaScript?",
     choices: [
@@ -51,6 +41,17 @@ var questions = [
     title: "The condition in an if / else statement is enclosed within ____.",
     choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
     answer: "parentheses",
+  },
+  {
+    title:
+      "Which one of these is not among the three different types of errors in JavaScript?",
+    choices: [
+      "Animation time errors",
+      "Load time errors",
+      "Run time errors",
+      "Logical Errors",
+    ],
+    answer: "Animation time errors",
   },
   {
     title: "Arrays in JavaScript can be used to store ____.",

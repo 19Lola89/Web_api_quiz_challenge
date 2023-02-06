@@ -25,7 +25,10 @@ MIT
 
 ## Deployment link and screenshot
 
+https://19lola89.github.io/Web_api_quiz_challenge/
 
+
+https://github.com/19Lola89/Web_api_quiz_challenge/edit/main/README.md
 
 <img width="1440" alt="Screenshot 2023-02-06 at 21 41 57" src="https://user-images.githubusercontent.com/86410482/217094513-30bfd9c8-292e-43bd-9de4-7adb0f03bbab.png">
 

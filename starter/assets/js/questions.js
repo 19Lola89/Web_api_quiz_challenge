@@ -1,5 +1,5 @@
 // list of questions
-var questions = [
+var questionsArr = [
   {
     title: "The condition in an if/else statement is enclosed with ___. ",
     choices: ["parentheses", " curly brackets", "quotes", "square brackets"],

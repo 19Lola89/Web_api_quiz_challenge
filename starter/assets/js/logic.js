@@ -1,14 +1,14 @@
 // DOM elements
-var questionsEl = document.querySelector("#questions");
 var timerEl = document.querySelector("#time");
-var choicesEl = document.querySelector("#choices");
+var questionsEl = document.querySelector("#questions");
 var submitBtn = document.querySelector("#submit");
+var choicesEl = document.querySelector("#choices");
 var startBtn = document.querySelector("#start");
 var initialsEl = document.querySelector("#initials");
 var feedbackEl = document.querySelector("#feedback");
 
 // quiz state variables
-var time = questions.length * 10;
+var time = questionsArr.length * 10;
 var timer;
 var currentQuestionIndex = 0;
 
@@ -21,17 +21,17 @@ function startQuiz() {
   questionsEl.removeAttribute("class");
 
   // start timer
-  timer = setInterval(clockTick, 1000);
+  timer = setInterval(clock, 1000);
 
   // show starting time
   timerEl.textContent = time;
 
-  getQuestion();
+  getNextQuestion();
 }
 
-function getQuestion() {
-  // get current question object from array
-  var currentQuestion = questions[currentQuestionIndex];
+function getNextQuestion() {
+  // current question from array of obj
+  var currentQuestion = questionsArr[currentQuestionIndex];
 
   // update title with current question
   var titleEl = document.getElementById("question-title");
@@ -49,17 +49,17 @@ function getQuestion() {
 
     choiceButton.textContent = i + 1 + ". " + choice;
 
-    // attach click event listener to each choice
-    choiceButton.onclick = questionClick;
+    // attach click event listener to each choice button
+    choiceButton.onclick = questionPress;
 
     // display on the page
     choicesEl.appendChild(choiceButton);
   });
 }
 
-function questionClick() {
+function questionPress() {
   // check if user guessed wrong
-  if (this.value !== questions[currentQuestionIndex].answer) {
+  if (this.value !== questionsArr[currentQuestionIndex].answer) {
     // penalize time
     time -= 10;
 
@@ -83,14 +83,14 @@ function questionClick() {
     feedbackEl.setAttribute("class", "feedback hide");
   }, 1000);
 
-  // next question
+
   currentQuestionIndex++;
 
-  // time checker
-  if (currentQuestionIndex === questions.length) {
+  // time check
+  if (currentQuestionIndex === questionsArr.length) {
     quizEnd();
   } else {
-    getQuestion();
+    getNextQuestion();
   }
 }
 
@@ -110,7 +110,7 @@ function quizEnd() {
   questionsEl.setAttribute("class", "hide");
 }
 
-function clockTick() {
+function clock() {
   // update time
   time--;
   timerEl.textContent = time;
